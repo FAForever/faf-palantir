@@ -1,0 +1,84 @@
+{@java.util.List<com.faforever.palantir.model.UserModel> users}
+{#include base}
+    {#fragment id = content}
+        <div class="overflow-x-auto">
+            <table class="table">
+                <!-- head -->
+                <thead>
+                <tr>
+                    <th>
+                        <div class="flex items-center gap-3">
+                            <div>
+                                <div class="font-bold">Name</div>
+                                <div class="font-bold opacity-50">ID</div>
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="flex items-center gap-3">
+                            <div>
+                                <div class="font-bold">Ban status</div>
+                                <div class="font-bold opacity-50">Expired at</div>
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="flex items-center gap-3">
+                            <div>
+                                <div class="font-bold">Email</div>
+                                <div class="font-bold opacity-50">Last IP / Last seen</div>
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="flex items-center gap-3">
+                            <div>
+                                <div class="font-bold">Account Links</div>
+                            </div>
+                        </div>
+                    </th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {#for user in users}
+                    <tr>
+                        <td>
+                            <div class="flex items-center gap-3">
+                                <div>
+                                    <div class="font-bold">{user.name}</div>
+                                    <div class="text-sm opacity-50">{user.id}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            t.b.d.
+                        </td>
+                        <td>
+                            <div class="flex items-center gap-3">
+                                <div>
+                                    <div>{user.email}</div>
+                                    <div class="text-sm opacity-50">{user.ipAddress}
+                                        @ {user.lastUpdatedAt.format("u-MM-dd hh:mm", englishLocale, timezoneUTC)}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex items-center gap-3">
+                                <div>
+                                    {#for link in user.accountLinks }
+                                        <div>{link.type}: {link.serviceId}</div>
+                                    {/for}
+                                </div>
+                            </div>
+                        </td>
+                        <th>
+                            <button class="btn btn-ghost btn-xs">details</button>
+                        </th>
+                    </tr>
+                {/for}
+                </tbody>
+            </table>
+        </div>
+    {/fragment}
+{/include}

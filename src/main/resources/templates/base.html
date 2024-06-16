@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.11.1/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/iconoir-icons/iconoir@main/css/iconoir.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.12" integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="drawer lg:drawer-open">
+    <input id="main-drawer" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content">
+        <label for="main-drawer" class="btn btn-primary drawer-button">Open drawer</label>
+        <div id="content">
+            {#insert}No body!{/}
+        </div>
+    </div>
+    <div class="drawer-side" hx-boost="true" hx-push-url="true">
+        <label for="main-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+        <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+            <!-- Sidebar content here -->
+            <h1 class="menu-title">FAForever Moderation Tools</h1>
+            <ul class="menu bg-base-200 w-56 rounded-box">
+                <li>
+                    <a href="/recent-activity" hx-target="#content">Recent activity</a>
+                    <h2 class="menu-title">User Management</h2>
+                    <ul>
+                        <li><a href="/user/info" hx-target="#content">User Info</a></li>
+                        <li><a href="/user/bans" hx-target="#content">Bans</a></li>
+                        <li><a href="/user/reports" hx-target="#content">Reports</a></li>
+                        <li><a href="/user/avatars" hx-target="#content">Avatars</a></li>
+                        <li><a href="/user/permissions" hx-target="#content">Permissions</a></li>
+                        <li><a href="/user/domain-blacklist" hx-target="#content">Domain Blacklist</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h2 class="menu-title">Vault</h2>
+                    <ul>
+                        <li><a>Matchmaker Map Pools</a></li>
+                        <li><a>Maps</a></li>
+                        <li><a>Mods</a></li>
+                        <li><a>Tutorials</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <h2 class="menu-title">Miscellaneous</h2>
+                    <ul>
+                        <li><a>Voting</a></li>
+                        <li><a>Messages</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>
+

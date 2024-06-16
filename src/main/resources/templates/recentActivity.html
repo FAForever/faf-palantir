@@ -1,0 +1,261 @@
+{@java.util.List<com.faforever.palantir.model.UserModel> users}
+{@java.util.List<com.faforever.palantir.model.TeamkillModel> teamKills}
+{@java.util.List<com.faforever.palantir.model.MapVersionModel> mapVersions}
+
+{#include base}
+    {#fragment id = content}
+        <div class="max-w-6xl mx-auto p-4">
+            <section>
+                <header class="bg-white shadow-lg p-4 flex justify-between items-center cursor-pointer"
+                        onclick="toggleSection('section1')">
+                    <h2 class="text-xl font-bold">Recent Registrations</h2>
+                    <i class="iconoir-arrow-right text-2xl" id="icon-section1"></i>
+                </header>
+                <div id="section1" class="bg-white shadow-lg p-4">
+                    <table class="table min-w-full bg-white">
+                        <thead>
+                        <tr>
+                            <th>
+                                <div class="flex items-center gap-3">
+                                    <div>
+                                        <div class="font-bold">Name</div>
+                                        <div class="font-bold opacity-50">ID</div>
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="flex items-center gap-3">
+                                    <div>
+                                        <div class="font-bold">Ban status</div>
+                                        <div class="font-bold opacity-50">Expired at</div>
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="flex items-center gap-3">
+                                    <div>
+                                        <div class="font-bold">Email</div>
+                                        <div class="font-bold opacity-50">Last IP / Last seen</div>
+                                    </div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="flex items-center gap-3">
+                                    <div>
+                                        <div class="font-bold">Account Links</div>
+                                    </div>
+                                </div>
+                            </th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {#for user in users}
+                            <tr>
+                                <td>
+                                    <div class="flex items-center gap-3">
+                                        <div>
+                                            <div class="font-bold">{user.name}</div>
+                                            <div class="text-sm opacity-50">{user.id}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    t.b.d.
+                                </td>
+                                <td>
+                                    <div class="flex items-center gap-3">
+                                        <div>
+                                            <div>{user.email}</div>
+                                            <div class="text-sm opacity-50">{user.ipAddress}
+                                                @ {user.lastUpdatedAt.format("u-MM-dd hh:mm", englishLocale, timezoneUTC)}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="flex items-center gap-3">
+                                        <div>
+                                            {#for link in user.accountLinks }
+                                                <div>{link.type}: {link.serviceId}</div>
+                                            {/for}
+                                        </div>
+                                    </div>
+                                </td>
+                                <th>
+                                    <button class="btn btn-ghost btn-xs">details</button>
+                                </th>
+                            </tr>
+                        {/for}
+                        </tbody>
+
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <div class="max-w-6xl mx-auto p-4">
+            <section>
+                <header class="bg-white shadow-lg p-4 flex justify-between items-center cursor-pointer"
+                        onclick="toggleSection('section2')">
+                    <h2 class="text-xl font-bold">Recent Teamkills</h2>
+                    <i class="iconoir-arrow-right text-2xl" id="icon-section2"></i>
+                </header>
+                <div id="section2" class="bg-white shadow-lg p-4">
+                    <table class="table min-w-full bg-white">
+                        <thead>
+                        <tr>
+                            <th>
+                                <div class="flex items-center gap-3">
+                                    <div class="font-bold">Killer</div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="flex items-center gap-3">
+                                    <div class="font-bold">Victim</div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="flex items-center gap-3">
+                                    <div class="font-bold">Game ID</div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="flex items-center gap-3">
+                                    <div class="font-bold">Game Time</div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="flex items-center gap-3">
+                                    <div class="font-bold">Reported At</div>
+                                </div>
+                            </th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {#for teamKill in teamkills}
+                            <tr>
+                                <td>
+                                    <div class="flex items-center gap-3">
+                                        <div class="font-bold">{teamKill.teamkiller.name}</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="flex items-center gap-3">
+                                        <div>{teamKill.victim.name}</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="flex items-center gap-3">
+                                        <div>{teamKill.gameId}</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="flex items-center gap-3">
+                                        <div>{teamKill.gameTime}</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="flex items-center gap-3">
+                                        <div>{teamKill.reportedAt.format("u-MM-dd hh:mm", englishLocale, timezoneUTC)}</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {/for}
+                        </tbody>
+
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <div class="max-w-6xl mx-auto p-4">
+            <section>
+                <header class="bg-white shadow-lg p-4 flex justify-between items-center cursor-pointer"
+                        onclick="toggleSection('section3')">
+                    <h2 class="text-xl font-bold">Recent Map Uploads</h2>
+                    <i class="iconoir-arrow-right text-2xl" id="icon-section3"></i>
+                </header>
+                <div id="section3" class="bg-white shadow-lg p-4">
+                    <table class="table min-w-full bg-white">
+                        <thead>
+                        <tr>
+                            <th>
+                                <div class="flex items-center gap-3">
+                                    <div class="font-bold">Map Version</div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="flex items-center gap-3">
+                                    <div class="font-bold">Ranked</div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="flex items-center gap-3">
+                                    <div class="font-bold">Hidden</div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="flex items-center gap-3">
+                                    <div class="font-bold">Max Players</div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="flex items-center gap-3">
+                                    <div class="font-bold">Width x Height</div>
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {#for mapVersion in mapUploads}
+                            <tr>
+                                <td>
+                                    <div class="flex items-center gap-3">
+                                        <div class="font-bold">{mapVersion.mapId} @ v{mapVersion.version}</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="flex items-center gap-3">
+                                        <div>{mapVersion.ranked}</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="flex items-center gap-3">
+                                        <div>{mapVersion.hidden}</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="flex items-center gap-3">
+                                        <div>{mapVersion.maxPlayers}</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="flex items-center gap-3">
+                                        <div>{mapVersion.width}x{mapVersion.height}</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {/for}
+                        </tbody>
+
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <script>
+            function toggleSection(sectionId) {
+                const section = document.getElementById(sectionId);
+                const icon = document.getElementById('icon-' + sectionId);
+                if (section.classList.contains('hidden')) {
+                    section.classList.remove('hidden');
+                    icon.classList.add('rotate-90');
+                } else {
+                    section.classList.add('hidden');
+                    icon.classList.remove('rotate-90');
+                }
+            }
+        </script>
+    {/fragment}
+{/include}

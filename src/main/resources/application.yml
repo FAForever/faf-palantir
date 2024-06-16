@@ -1,0 +1,40 @@
+quarkus:
+  oidc:
+    auth-server-url: https://hydra.faforever.com
+    client-id: faf-moderator-client
+    application-type: web-app
+    token:
+      audience: any
+    token-state-manager:
+        encryption-secret: banana
+    authentication:
+      redirect-path: "/"
+      restore-path-after-redirect: true
+      scopes:
+        - openid
+        - public_profile
+        - upload_avatar
+        - administrative_actions
+        - read_sensible_userdata
+        - manage_vault
+  http:
+    auth:
+      permission:
+        authenticated:
+          paths: "/*"
+          policy: authenticated
+    cookie:
+      session:
+      enabled: true
+      timeout: 3600 # Session timeout in seconds (1 hour)
+      cookie-max-age: 86400 # Cookie lifespan in seconds (1 day)
+  log:
+    level: INFO
+faf:
+  #api-base-url: http://localhost:8010
+  api-base-url: https://api.faforever.com
+
+"%dev":
+  quarkus:
+    live-reload:
+      instrumentation: true

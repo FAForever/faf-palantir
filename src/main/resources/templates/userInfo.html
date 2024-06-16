@@ -1,0 +1,32 @@
+{#include base}
+    {#fragment id = content}
+        <form class="w-full max-w-sm" hx-get="/user/search" hx-target="#search-result">
+            <select name="search-for" required>
+                <!-- option values map to API filter criteria -->
+                <option value="login" selected>Name</option>
+                <option value="id">ID</option>
+                <option value="email">Email</option>
+                <option value="accountLinks.serviceId">Steam ID</option>
+                <option value="accountLinks.serviceId">GoG ID</option>
+                <option value="recentIpAddress">IP Address</option>
+                <option value="names.name">Previous Name</option>
+                <option value="uniqueIds.hash">UID Hash</option>
+                <option value="uniqueIds.deviceId">Device Id</option>
+                <option value="uniqueIds.name">CPU Name</option>
+                <option value="uniqueIds.uuid">UUID</option>
+                <option value="uniqueIds.serialNumber">Serial Number</option>
+                <option value="uniqueIds.processorId">Processor Id</option>
+                <option value="uniqueIds.SMBIOSBIOSVersion">Bios Version</option>
+                <option value="uniqueIds.volumeSerialNumber">Volume Serial Number</option>
+                <option value="uniqueIds.memorySerialNumber">Memory Serial Number</option>
+                <option value="uniqueIds.manufacturer">Manufacturer</option>
+            </select>
+            <input type="text" name="query" placeholder="Search" aria-label="Search" required>
+            <button type="submit">Search</button>
+        </form>
+
+        <div id="search-result">
+            Nothing loaded yet.
+        </div>
+    {/fragment}
+{/include}
